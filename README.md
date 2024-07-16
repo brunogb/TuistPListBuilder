@@ -30,7 +30,6 @@ Target.target(
                 info.mainStoryboardName = "LaunchScreen.storyboard"
                 info.bundleVersion = "1.0.1"
                 info.supportedInterfaceOrientations = [.portrait, .upsideDown]
-                info.bruno.brunoTag = "test"
             },
             sources: ["SampleAppForPlugin/Sources/**"],
             resources: ["SampleAppForPlugin/Resources/**"],
