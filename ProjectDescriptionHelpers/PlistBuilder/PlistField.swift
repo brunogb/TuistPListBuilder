@@ -9,7 +9,7 @@ import Foundation
 
 
 /// Simple entity to hold property name and relative key of an entry for a Plist file
-struct PlistField {
+public struct PlistField {
     let key: String
     let property: String
 }
@@ -23,7 +23,7 @@ private protocol PlistEntryIdentifiable {
 extension PlistEntry: PlistEntryIdentifiable { }
 
 extension PlistField {
-    static func extractFields(from instance: AnyObject) -> [PlistField] {
+    static func extractFields(from instance: Any) -> [PlistField] {
         let mirror = Mirror(reflecting: instance)
         return mirror.children.reduce(into: []) { partialResult, child in
             if let identifiable = child.value as? PlistEntryIdentifiable, let label = child.label {

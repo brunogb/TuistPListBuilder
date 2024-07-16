@@ -12,7 +12,7 @@ import ProjectDescription
 public struct InfoPlistBuilder {
     
     public init() {
-        self.raw = PlistBuilder(knownFields: identifiers.allIdentifiers)
+        self.raw = PlistBuilder()
     }
     
     private let identifiers = InfoPlistEntrys()
@@ -27,7 +27,6 @@ public struct InfoPlistBuilder {
         }
     }
 }
-
 
 public extension InfoPlist {
     

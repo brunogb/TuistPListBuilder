@@ -17,7 +17,7 @@ public struct EntitlementsBuilder {
     private(set) public var raw: PlistBuilder
     
     public init() {
-        self.raw = PlistBuilder(knownFields: identifiers.allIdentifiers)
+        self.raw = PlistBuilder()
     }
     
     public subscript<Value: PlistEntryConvertible>(dynamicMember keyPath: EntitlementValueKeyPath<Value>) -> Value? {

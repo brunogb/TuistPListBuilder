@@ -11,12 +11,9 @@ import ProjectDescription
 @dynamicMemberLookup
 public class PlistBuilder {
     
-    let knownFields: [PlistField]
     public var values: [String: Plist.Value] = [:]
     
-    init(knownFields: [PlistField]) {
-        self.knownFields = knownFields
-    }
+    init() { }
     
     public func value<Value: PlistEntryConvertible>(for key: String) -> Value? {
         guard let value = values[key] else {
@@ -26,9 +23,6 @@ public class PlistBuilder {
     }
     
     public func setValue<Value: PlistEntryConvertible>(_ value: Value?, for key: String) {
-        if let known = knownFields.first(where: { $0.key == key }) {
-            print("You can use property [.\(known.property)] for key: \"\(key)\"")
-        }
         values[key] = value?.toValue()
     }
     
@@ -51,6 +45,10 @@ public class PlistBuilder {
         }
         return .dictionary(values)
     }
+}
+
+public protocol PlistEntriesAggregator {
+    init()
 }
 
 public protocol PlistEntryConvertible {
