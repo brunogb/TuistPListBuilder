@@ -1,3 +1,20 @@
+## Instalation
+To install this plugin add this to your Config.swift (if you don't have a Config.swift file yet, just create one inside the Tuist folder with the following content):
+```swift
+import ProjectDescription
+
+let config = Config(
+    plugins: [
+        .git(url: "https://github.com/brunogb/TuistPListBuilder.git", tag: "0.0.1")
+    ]
+)
+```
+and the import the plugin in the files that are needed:
+```swift
+import TuistPList
+```
+
+
 ## Tuist Plist plugin
 When defining targets in Tuist, it is common to add a dictionary 
 
