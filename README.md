@@ -50,7 +50,7 @@ which will add a entry with key "CFCustomEntry" and value "abcde"
 
 You can also add type check and autocompletion, you can create a type that conforms to `PlistEntriesAggregator` and define custom properties inside it:
 ```swift
-public struct MyInfoPlistEntrys: PlistEntriesAggregator {
+public struct MyInfoPlistEntries: PlistEntriesAggregator {
     
     public let customEntry = PlistEntry<String>(key: "CFCustomEntry")
     
@@ -60,12 +60,12 @@ public struct MyInfoPlistEntrys: PlistEntriesAggregator {
 then you can either add those properties directly into the `info` object:
 ```swift
 extension InfoPlistBuilder {
-    public subscript<V: PlistEntryConvertible>(dynamicMember keyPath: KeyPath<MyInfoPlistEntrys, PlistEntry<V>>) -> V? {
+    public subscript<V: PlistEntryConvertible>(dynamicMember keyPath: KeyPath<MyInfoPlistEntries, PlistEntry<V>>) -> V? {
         get {
-            raw.value(for: MyInfoPlistEntrys()[keyPath: keyPath].key)
+            raw.value(for: MyInfoPlistEntries()[keyPath: keyPath].key)
         }
         set {
-            raw.setValue(newValue, for: MyInfoPlistEntrys()[keyPath: keyPath].key)
+            raw.setValue(newValue, for: MyInfoPlistEntries()[keyPath: keyPath].key)
         }
     }
 }
@@ -78,7 +78,7 @@ info.customEntry = "My Custom value"
 or you can group them inside a property:
 ```swift
 extension InfoPlistBuilder {
-    var custom: GenericInfoPlistBuilder<MyInfoPlistEntrys> {
+    var custom: GenericInfoPlistBuilder<MyInfoPlistEntries> {
         get {
             .init(rawBuilder: raw)
         }
