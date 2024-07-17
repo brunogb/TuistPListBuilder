@@ -15,16 +15,23 @@ public struct InfoPlistBuilder {
         self.raw = PlistBuilder()
     }
     
-    private let identifiers = InfoPlistEntrys()
+    private let identifiers = InfoPlistEntries()
     private(set) public var raw: PlistBuilder
     
-    public subscript<V: PlistEntryConvertible>(dynamicMember keyPath: KeyPath<InfoPlistEntrys, PlistEntry<V>>) -> V? {
+    public subscript<V: PlistEntryConvertible>(dynamicMember keyPath: KeyPath<InfoPlistEntries, PlistEntry<V>>) -> V? {
         get {
             return raw.value(for: identifiers[keyPath: keyPath].key)
         }
         set {
             raw.setValue(newValue, for: identifiers[keyPath: keyPath].key)
         }
+    }
+    
+    public var privacy: GenericInfoPlistBuilder<PrivacyPlistEntries> {
+        get {
+            .init(rawBuilder: raw)
+        }
+        nonmutating set { }
     }
 }
 
